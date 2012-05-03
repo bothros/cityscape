@@ -8,11 +8,13 @@ useLayer = do ->
         'fog': new Layer
         'foreground': new Layer
     }
+    do layerReg['backstage'].activate
     (layerName) ->
         (fn) ->
+            oldlayer = project.activeLayer
             do layerReg[layerName].activate
             do fn
-            do layerReg['backstage'].activate
+            do oldlayer.activate
 
 # Return a random color, in hash string form
 randColor = ->

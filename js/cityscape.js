@@ -11,11 +11,14 @@
       'fog': new Layer,
       'foreground': new Layer
     };
+    layerReg['backstage'].activate();
     return function(layerName) {
       return function(fn) {
+        var oldlayer;
+        oldlayer = project.activeLayer;
         layerReg[layerName].activate();
         fn();
-        return layerReg['backstage'].activate();
+        return oldlayer.activate();
       };
     };
   })();
