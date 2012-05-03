@@ -6,7 +6,7 @@ rect.fillColor = 'red'
 
 randColor = () ->
     letters = '0123456789ABCDEF'.split ''
-    '#' + (letters[Math.round(Math.random() * 15)] for i in [0..6]).join('')
+    '#' + (letters[Math.round(Math.random() * 15)] for i in [1..6]).join('')
 
 randNum = (min, max) ->
     Math.floor (Math.random() * (max-min+1)) + min
