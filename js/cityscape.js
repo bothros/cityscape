@@ -26,7 +26,7 @@
 
   background.moveBelow(foreground);
 
-  numbuildings = 50;
+  numbuildings = 150;
 
   buildings = (function() {
     var _i, _results;
@@ -36,7 +36,8 @@
       pos = new Point([Math.floor((Math.random() * view.bounds.width - size.width) + view.bounds.left), view.bounds.bottom - size.height]);
       building = new Path.Rectangle(pos, size);
       building.strokeColor = 'black';
-      _results.push(building.fillColor = 'blue');
+      building.fillColor = 'blue';
+      _results.push(building);
     }
     return _results;
   })();

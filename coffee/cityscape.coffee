@@ -15,7 +15,7 @@ street.add (new Point view.bounds.right, view.bounds.bottom)
 background = new Layer
 background.moveBelow foreground
 
-numbuildings = 50
+numbuildings = 150
 buildings = for i in [0..numbuildings]
     size = new Size [
         Math.floor (Math.random() * 21) + 5
@@ -28,4 +28,4 @@ buildings = for i in [0..numbuildings]
     building = new Path.Rectangle pos, size
     building.strokeColor = 'black'
     building.fillColor = 'blue'
-
+    building
