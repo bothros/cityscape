@@ -1,15 +1,18 @@
 # Pass a function to useLayer, and that function will be called, drawing on a particular layer.
 useLayer = do ->
-    # layers must be registered here, from furthest back to furthest front.
+    # Layers must be registered here, from furthest back to furthest front.
     layerReg = { 
+        'backstage': new Layer
         'sky': new Layer
         'background': new Layer
+        'fog': new Layer
         'foreground': new Layer
     }
     (layerName) ->
         (fn) ->
             do layerReg[layerName].activate
             do fn
+            do layerReg['backstage'].activate
 
 # Return a random color, in hash string form
 randColor = ->
@@ -27,6 +30,7 @@ useLayer('foreground') ->
     street.strokeWidth = 10
     street.add (new Point view.bounds.left, view.bounds.bottom)
     street.add (new Point view.bounds.right, view.bounds.bottom)
+    street
 
 # Draw the buildings in the background
 useLayer('background') ->
@@ -50,3 +54,10 @@ useLayer('sky') ->
     sky = new Path.Rectangle view.bounds
     skyGrad = new Gradient ['darkblue', 'darkred', 'red']
     sky.fillColor = new GradientColor skyGrad, view.bounds.topCenter, view.bounds.bottomCenter
+    sky
+
+useLayer('fog') ->
+    fog = new Path.Rectangle view.bounds
+    fog.fillColor = 'darkgrey' 
+    fog.fillColor.alpha = 0.5
+    fog

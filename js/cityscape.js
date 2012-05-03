@@ -5,14 +5,17 @@
   useLayer = (function() {
     var layerReg;
     layerReg = {
+      'backstage': new Layer,
       'sky': new Layer,
       'background': new Layer,
+      'fog': new Layer,
       'foreground': new Layer
     };
     return function(layerName) {
       return function(fn) {
         layerReg[layerName].activate();
-        return fn();
+        fn();
+        return layerReg['backstage'].activate();
       };
     };
   })();
@@ -40,7 +43,8 @@
     street.strokeColor = 'black';
     street.strokeWidth = 10;
     street.add(new Point(view.bounds.left, view.bounds.bottom));
-    return street.add(new Point(view.bounds.right, view.bounds.bottom));
+    street.add(new Point(view.bounds.right, view.bounds.bottom));
+    return street;
   });
 
   useLayer('background')(function() {
@@ -62,7 +66,16 @@
     var sky, skyGrad;
     sky = new Path.Rectangle(view.bounds);
     skyGrad = new Gradient(['darkblue', 'darkred', 'red']);
-    return sky.fillColor = new GradientColor(skyGrad, view.bounds.topCenter, view.bounds.bottomCenter);
+    sky.fillColor = new GradientColor(skyGrad, view.bounds.topCenter, view.bounds.bottomCenter);
+    return sky;
+  });
+
+  useLayer('fog')(function() {
+    var fog;
+    fog = new Path.Rectangle(view.bounds);
+    fog.fillColor = 'darkgrey';
+    fog.fillColor.alpha = 0.5;
+    return fog;
   });
 
 }).call(this);
