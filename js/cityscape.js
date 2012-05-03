@@ -60,4 +60,6 @@
     return _results;
   })();
 
+  console.log(randColor());
+
 }).call(this);

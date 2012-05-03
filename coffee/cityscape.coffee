@@ -40,3 +40,5 @@ buildings = for i in [0..numbuildings]
     building.fillColor = randColor()
     console.log building.fillColor
     building
+
+console.log randColor()
