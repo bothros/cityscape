@@ -16,7 +16,7 @@
     return '#' + ((function() {
       var _i, _results;
       _results = [];
-      for (i = _i = 0; _i <= 6; i = ++_i) {
+      for (i = _i = 1; _i <= 6; i = ++_i) {
         _results.push(letters[Math.round(Math.random() * 15)]);
       }
       return _results;
